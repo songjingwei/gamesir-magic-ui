@@ -38,6 +38,8 @@ npm run dev
 
 `GlowingCard` 是一个带有动态辉光边框效果的卡片组件，当鼠标悬停在其上时，辉光会以动画形式出现和消失，为您的内容区域提供吸引人的视觉焦点。
 
+![GlowingCard 示例](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
+
 **导入和使用：**
 
 ```tsx
@@ -98,6 +100,8 @@ npm run dev
 #### GlowingCard Component
 
 `GlowingCard` is a card component with a dynamic glowing border effect. When the mouse hovers over it, the glow appears and disappears with an animation, providing an attractive visual focus for your content area. 🤩
+
+![GlowingCard Example](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
 
 **Import and Usage:**
 
