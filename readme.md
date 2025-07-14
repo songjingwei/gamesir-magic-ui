@@ -1,5 +1,6 @@
-# 盖世小鸡特效组件库 (Gamesir Magic UI Components Library)
+![Logo](https://xiaoji.com/uploads/20250427/82572411dc4d8c4f53be903e2317d789.png) 
 
+#   盖世小鸡特效组件库 (Gamesir Magic UI Components Library)
 [简体中文](#简体中文) | [English](#english)
 
 ---
