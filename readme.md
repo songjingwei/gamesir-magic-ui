@@ -40,6 +40,11 @@ npm run dev
 
 ![GlowingCard 示例](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
 
+**动画行为更新：**
+
+*   **`--rim-angle` 动画**：鼠标离开时，`--rim-angle` 动画现在使用 `linear` 缓动函数，确保动画平滑过渡。
+*   **动态过渡**：`opacity` 和 `--rim-angle` 的过渡效果会根据鼠标进入 (`isEntering`) 或离开 (`isLeaving`) 状态进行动态调整，提供更自然的用户体验。
+
 **导入和使用：**
 
 ```tsx
@@ -67,6 +72,7 @@ export default MyComponent;
 | `width` | `number` | `必填` | 卡片的宽度，单位为像素 (px)。 |
 | `height` | `number` | `必填` | 卡片的高度，单位为像素 (px)。 |
 | `borderRadius` | `string` | `'16px'` | 卡片的圆角半径，支持 CSS 单位 (如 `px`, `rem`, `%`)。 |
+| `hoverScale` | `number` | `1.0` | 鼠标悬停时卡片的放大倍数，默认为 `1.0` (即不放大)。 |
 
 ## English
 
@@ -103,6 +109,11 @@ npm run dev
 
 ![GlowingCard Example](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
 
+**Animation Behavior Updates:**
+
+*   **`--rim-angle` Animation**: When the mouse leaves, the `--rim-angle` animation now uses a `linear` easing function for smoother transitions.
+*   **Dynamic Transitions**: The `opacity` and `--rim-angle` transition effects dynamically adjust based on the mouse entering (`isEntering`) or leaving (`isLeaving`) states, providing a more natural user experience.
+
 **Import and Usage:**
 
 ```tsx
@@ -131,6 +142,7 @@ export default MyComponent;
 | `width` | `number` | `Required` | The width of the card in pixels (px). |
 | `height` | `number` | `Required` | The height of the card in pixels (px). |
 | `borderRadius` | `string` | `'16px'` | The border-radius of the card, supporting CSS units (e.g., `px`, `rem`, `%`). |
+| `hoverScale` | `number` | `1.0` | The scaling factor of the card on hover, defaults to `1.0` (no scaling). |
 
 ## 🌟 特性 (Features)
 
@@ -194,5 +206,5 @@ pnpm run build
 
 ---
 
-Made with ❤️ by Gamesir Game Project Team
+Made with ❤️ by Gamesir Gamehub Project Team
 
