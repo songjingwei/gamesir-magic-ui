@@ -42,6 +42,10 @@ interface NetworkSpeedVisualizerProps {
 	 * 最高速度 (kbps)，用于计算柱子高度的基准
 	 */
 	maxSpeed?: number;
+	/**
+	 * 是否暂停可视化
+	 */
+	paused?: boolean;
 }
 
 interface BarData {
@@ -61,6 +65,7 @@ const NetworkSpeedVisualizer: React.FC<NetworkSpeedVisualizerProps> = ({
 	barColor = "#97FDE6", // 接近 Figma 截图中的青绿色
 	updateInterval = 300, // 每300ms更新一次柱子
 	maxSpeed = 1000000, // 默认最大速度为 1000M/s (转换为 kbps)
+	paused = false, // 默认不暂停
 }) => {
 	const [bars, setBars] = useState<BarData[]>([]);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -78,32 +83,39 @@ const NetworkSpeedVisualizer: React.FC<NetworkSpeedVisualizerProps> = ({
 			return 0.3 + (1 - 0.3) * normalizedIndex; // 最左边透明度为0.3，最右边完全不透明
 		};
 
-		const interval = setInterval(() => {
-			setBars((prevBars) => {
-				const newBars = [...prevBars];
+		let interval: NodeJS.Timeout;
+		if (!paused) {
+			interval = setInterval(() => {
+				setBars((prevBars) => {
+					const newBars = [...prevBars];
 
-				// 添加新柱子
-				const newBarHeight = calculateBarHeight(speed);
-				const newId = Date.now().toString(); // 唯一ID
-				newBars.push({ id: newId, height: newBarHeight, opacity: 1 }); // 初始透明度为1
+					// 添加新柱子
+					const newBarHeight = calculateBarHeight(speed);
+					const newId = Date.now().toString(); // 唯一ID
+					newBars.push({ id: newId, height: newBarHeight, opacity: 1 }); // 初始透明度为1
 
-				// 移除超出最大数量的柱子
-				if (newBars.length > maxBars) {
-					newBars.shift();
-				}
+					// 移除超出最大数量的柱子
+					if (newBars.length > maxBars) {
+						newBars.shift();
+					}
 
-				// 更新所有柱子的透明度
-				const updatedBars = newBars.map((bar, index) => ({
-					...bar,
-					opacity: calculateOpacity(index, newBars.length),
-				}));
+					// 更新所有柱子的透明度
+					const updatedBars = newBars.map((bar, index) => ({
+						...bar,
+						opacity: calculateOpacity(index, newBars.length),
+					}));
 
-				return updatedBars;
-			});
-		}, updateInterval);
+					return updatedBars;
+				});
+			}, updateInterval);
+		}
 
-		return () => clearInterval(interval);
-	}, [speed, maxBars, updateInterval, maxBarHeight, maxSpeed]); // 添加 maxSpeed 到依赖项
+		return () => {
+			if (interval) {
+				clearInterval(interval);
+			}
+		};
+	}, [speed, maxBars, updateInterval, maxBarHeight, maxSpeed, paused]); // 添加 paused 到依赖项
 
 	return (
 		<div
@@ -111,7 +123,9 @@ const NetworkSpeedVisualizer: React.FC<NetworkSpeedVisualizerProps> = ({
 			className="relative flex items-end overflow-hidden"
 			style={{ width, height }}
 		>
-			<AnimatePresence>
+			<AnimatePresence initial={false}>
+				{" "}
+				{/* initial={false} 避免初始渲染时的动画 */}
 				{bars.map((bar, index) => (
 					<motion.div
 						key={bar.id}
@@ -119,19 +133,27 @@ const NetworkSpeedVisualizer: React.FC<NetworkSpeedVisualizerProps> = ({
 						style={{
 							width: barWidth,
 							backgroundColor: barColor,
-							left: `calc(100% - ${barWidth * (bars.length - index) + barGap * (bars.length - index - 1)}px)`, // 从右到左定位
-							// 初始位置在最右边，然后向左移动
+							// 在暂停时，柱子不再从右往左运动，保持当前位置
+							left: paused
+								? `calc(100% - ${barWidth * (bars.length - index) + barGap * (bars.length - index - 1)}px)`
+								: `calc(100% - ${barWidth * (bars.length - index) + barGap * (bars.length - index - 1)}px)`,
 							opacity: bar.opacity,
 						}}
-						initial={{ x: barWidth + barGap, height: 0 }} // 初始位置在右侧，高度为0
-						animate={{ x: 0, height: bar.height }} // 移动到最终位置，高度动画
-						exit={{ x: -(barWidth + barGap), opacity: 0 }} // 移出屏幕时动画
-						transition={{
-							type: "spring",
-							stiffness: 500,
-							damping: 30,
-							duration: updateInterval / 1000,
-						}} // 动画平滑
+						initial={paused ? {} : { x: barWidth + barGap, height: 0 }} // 暂停时没有初始动画
+						animate={
+							paused ? { height: bar.height } : { x: 0, height: bar.height }
+						} // 暂停时只改变高度
+						exit={paused ? {} : { x: -(barWidth + barGap), opacity: 0 }} // 暂停时没有退出动画
+						transition={
+							paused
+								? { duration: 0 } // 暂停时无动画
+								: {
+										type: "spring",
+										stiffness: 500,
+										damping: 30,
+										duration: updateInterval / 1000,
+									}
+						} // 动画平滑
 					/>
 				))}
 			</AnimatePresence>

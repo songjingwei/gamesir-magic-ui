@@ -126,6 +126,7 @@ export default MyNetworkMonitor;
 | `maxBars` | `number` | `32` | 柱子保留的数量。 |
 | `barColor` | `string` | `'#97FDE6'` | 柱子的颜色，从左到右会逐渐变亮。 |
 | `updateInterval` | `number` | `300` | 更新柱子的间隔时间 (ms)。 |
+| `paused` | `boolean` | `false` | 是否暂停可视化，暂停后柱子不再新生成，也不再从右往左运动。 |
 
 ## English
 
