@@ -2,20 +2,21 @@
 	"name": "gamesir-magic-ui",
 	"private": false,
 	"license": "MIT",
-	"version": "0.0.1",
+	"version": "0.1.1",
 	"type": "module",
-	"main": "./dist/gamesir-magic-ui.umd.js",
+	"main": "./dist/gamesir-magic-ui.umd.cjs",
 	"module": "./dist/gamesir-magic-ui.es.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/gamesir-magic-ui.es.js",
-			"require": "./dist/gamesir-magic-ui.umd.js"
-		}
+			"require": "./dist/gamesir-magic-ui.umd.cjs"
+		},
+		"./dist/style.css": "./dist/assets/style.css"
 	},
 	"files": [
 		"dist",
-		"package.json"
+		"README.md"
 	],
 	"scripts": {
 		"dev": "vite",
@@ -60,6 +61,7 @@
 		"tailwindcss": "^4.1.11",
 		"tw-animate-css": "^1.3.5",
 		"typescript": "^5.2.2",
-		"vite": "^5.2.0"
+		"vite": "^5.2.0",
+		"vite-plugin-dts": "^4.5.4"
 	}
 }

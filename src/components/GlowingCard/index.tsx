@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
+import { cn } from "../../lib/utils";
 import "./index.css";
 
 interface IGlowingCardProps {
 	children?: React.ReactElement;
-	width: number;
-	height: number;
-	/**
-	 * 圆角半径：支持 px、rem 等 css 单位
-	 */
-	borderRadius?: string;
+	className?: string;
+	width?: number;
+	height?: number;
 	/**
 	 * hover 时放大倍数
 	 */
 	hoverScale?: number;
+	/**
+	 * 圆角半径：支持 px、rem 等 css 单位
+	 */
+	borderRadius?: string;
 }
 
 export const GlowingCard = (props: IGlowingCardProps) => {
 	const {
 		children,
-		borderRadius = "16px",
 		width,
 		height,
 		hoverScale = 1.0,
+		borderRadius = "16px",
 	} = props;
 	// 定义动画状态（鼠标进入/移出）
 	const [isHovered, setIsHovered] = useState(false);
@@ -50,14 +52,17 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 
 	return (
 		<motion.div
-			className="relative cursor-pointer"
+			className={cn("relative cursor-pointer w-full h-full", props.className)}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			style={{ width, height }}
+			style={{
+				...(width && { width }),
+				...(height && { height }),
+			}}
 			animate={{ scale: isHovered ? hoverScale : 1 }}
 		>
 			<motion.div
-				className="rounded-2xl gamesir-glowing-card"
+				className="gamesir-glowing-card"
 				style={
 					{
 						"--rim-angle": "0deg",

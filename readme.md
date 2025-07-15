@@ -36,7 +36,7 @@ npm run dev
 
 #### GlowingCard 组件
 
-`GlowingCard` 是一个带有动态辉光边框效果的卡片组件，当鼠标悬停在其上时，辉光会以动画形式出现和消失，为您的内容区域提供吸引人的视觉焦点。
+`GlowingCard` 是一个带有动态辉光边框效果的卡片组件，当鼠标悬停在其上时，辉光会以动画形式出现和消失，为您的内容区域提供吸引人的视觉焦点。默认情况下，它会填充其父容器的整个空间（`w-full h-full`），您也可以通过 `className` 自定义其尺寸。
 
 ![GlowingCard 示例](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
 
@@ -53,12 +53,14 @@ import { GlowingCard } from './src/components/GlowingCard'; // 请根据实际�
 
 const MyComponent = () => {
   return (
-    <GlowingCard width={300} height={200} borderRadius="20px">
-      <div style={{ padding: '20px', color: 'white' }}>
-        <h2>这是我的卡片标题</h2>
-        <p>卡片内容放这里。</p>
-      </div>
-    </GlowingCard>
+    <div style={{ width: '300px', height: '200px' }} className="mt-10">
+      <GlowingCard className="rounded-2xl" borderRadius="1rem">
+        <div style={{ padding: '20px', color: 'white' }}>
+          <h2>这是我的卡片标题</h2>
+          <p>卡片内容放这里。</p>
+        </div>
+      </GlowingCard>
+    </div>
   );
 };
 
@@ -69,10 +71,11 @@ export default MyComponent;
 | 属性名 | 类型 | 默认值 | 描述 |
 | :------- | :----- | :------ | :----------- |
 | `children` | `React.ReactElement` | `undefined` | 卡片内部渲染的 React 元素。 |
-| `width` | `number` | `必填` | 卡片的宽度，单位为像素 (px)。 |
-| `height` | `number` | `必填` | 卡片的高度，单位为像素 (px)。 |
-| `borderRadius` | `string` | `'16px'` | 卡片的圆角半径，支持 CSS 单位 (如 `px`, `rem`, `%`)。 |
+| `width` | `number` | `可选` | 卡片的宽度，单位为像素 (px)。不设置时，默认为 `w-full`。 |
+| `height` | `number` | `可选` | 卡片的高度，单位为像素 (px)。不设置时，默认为 `h-full`。 |
 | `hoverScale` | `number` | `1.0` | 鼠标悬停时卡片的放大倍数，默认为 `1.0` (即不放大)。 |
+| `className` | `string` | `''` | 传递自定义的 Tailwind CSS 类名。 |
+| `borderRadius` | `string` | `可选` | 设置卡片的圆角半径，支持 px、rem 等 css 单位。 |
 
 ## English
 
@@ -105,7 +108,7 @@ npm run dev
 
 #### GlowingCard Component
 
-`GlowingCard` is a card component with a dynamic glowing border effect. When the mouse hovers over it, the glow appears and disappears with an animation, providing an attractive visual focus for your content area. 🤩
+`GlowingCard` is a card component with a dynamic glowing border effect. When the mouse hovers over it, the glow appears and disappears with an animation, providing an attractive visual focus for your content area. 🤩 By default, it fills the entire space of its parent container (`w-full h-full`), and you can customize its dimensions via the `className` prop.
 
 ![GlowingCard Example](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
 
@@ -122,12 +125,14 @@ import { GlowingCard } from './src/components/GlowingCard'; // Adjust path as ne
 
 const MyComponent = () => {
   return (
-    <GlowingCard width={300} height={200} borderRadius="20px">
-      <div style={{ padding: '20px', color: 'white' }}>
-        <h2>My Card Title</h2>
-        <p>Card content goes here.</p>
-      </div>
-    </GlowingCard>
+    <div style={{ width: '300px', height: '200px' }} className="mt-10">
+      <GlowingCard className="rounded-2xl" borderRadius="1rem">
+        <div style={{ padding: '20px', color: 'white' }}>
+          <h2>My Card Title</h2>
+          <p>Card content goes here.</p>
+        </div>
+      </GlowingCard>
+    </div>
   );
 };
 
@@ -139,10 +144,11 @@ export default MyComponent;
 | Prop Name | Type | Default Value | Description |
 | :------- | :----- | :------ | :----------- |
 | `children` | `React.ReactElement` | `undefined` | The React element to be rendered inside the card. |
-| `width` | `number` | `Required` | The width of the card in pixels (px). |
-| `height` | `number` | `Required` | The height of the card in pixels (px). |
-| `borderRadius` | `string` | `'16px'` | The border-radius of the card, supporting CSS units (e.g., `px`, `rem`, `%`). |
+| `width` | `number` | `Optional` | The width of the card in pixels (px). Defaults to `w-full` if not set. |
+| `height` | `number` | `Optional` | The height of the card in pixels (px). Defaults to `h-full` if not set. |
 | `hoverScale` | `number` | `1.0` | The scaling factor of the card on hover, defaults to `1.0` (no scaling). |
+| `className` | `string` | `''` | Pass custom Tailwind CSS class names. |
+| `borderRadius` | `string` | `Optional` | Sets the border radius of the card, supporting css units like px, rem, etc. |
 
 ## 🌟 特性 (Features)
 
@@ -195,8 +201,8 @@ pnpm run build
 
 我们非常欢迎社区的贡献！如果您有任何想法、建议或发现了 bug，请随时通过以下方式联系我们：
 
--   提交 [Issue](https://github.com/your-username/gamesir-magic-ui/issues)
--   提交 [Pull Request](https://github.com/your-username/gamesir-magic-ui/pulls)
+-   提交 [Issue](https://github.com/songjingwei/gamesir-magic-ui/issues)
+-   提交 [Pull Request](https://github.com/songjingwei/gamesir-magic-ui/pulls)
 
 在提交 PR 之前，请确保您的代码符合项目规范并通过所有测试。
 
