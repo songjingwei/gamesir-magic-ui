@@ -24,7 +24,12 @@ jobs:
       - name: Build package # 构建你的库
         run: npm run build
 
+      - name: Authenticate with npm # 添加认证步骤
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish to npm # 发布到 npm
-        run: npm publish
+        run: npm publish --access public # 添加 --access public，确保公开包可以发布
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 使用之前设置的 GitHub Secret
