@@ -1,0 +1,30 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main # 当推送到 main 分支时触发
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest # 在 Ubuntu 虚拟机上运行此作业
+    steps:
+      - name: Checkout repository # 检出代码
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js # 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' # 使用 Node.js 20 版本，你可以根据你的项目调整
+          registry-url: 'https://registry.npmjs.org/' # npm 注册表地址
+
+      - name: Install dependencies # 安装项目依赖
+        run: npm ci # 使用 npm ci 来确保干净安装，适用于 CI/CD
+
+      - name: Build package # 构建你的库
+        run: npm run build
+
+      - name: Publish to npm # 发布到 npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 使用之前设置的 GitHub Secret
