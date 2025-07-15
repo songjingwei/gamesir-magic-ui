@@ -9,6 +9,7 @@
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
+			"types": "./dist/index.d.ts",
 			"import": "./dist/gamesir-magic-ui.es.js",
 			"require": "./dist/gamesir-magic-ui.umd.cjs"
 		},

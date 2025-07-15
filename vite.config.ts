@@ -10,7 +10,7 @@ export default defineConfig({
 	base: "./", // 添加 base 路径
 	root: ".", // 将根目录设置为当前目录
 	publicDir: "public", // 将 public 目录设置为静态资源目录
-	plugins: [react(), tailwindcss(), dts()], // 添加 dts 插件
+	plugins: [react(), tailwindcss(), dts({ rollupTypes: true })], // 添加 dts 插件
 	resolve: {
 		alias: {
 			"@": path.resolve(fileURLToPath(new URL(".", import.meta.url)), "./src"),
