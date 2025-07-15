@@ -28,7 +28,7 @@ export default defineConfig({
 			},
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"], // 标记为外部依赖
+			external: ["react", "react-dom", "react/jsx-runtime"], // 标记为外部依赖
 			output: {
 				globals: {
 					react: "React",
