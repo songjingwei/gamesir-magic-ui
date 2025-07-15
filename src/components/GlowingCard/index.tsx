@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "../../lib/utils";
 import "./index.css";
@@ -8,6 +8,14 @@ interface IGlowingCardProps {
 	className?: string;
 	width?: number;
 	height?: number;
+	/**
+	 * 光晕旋转角度
+	 */
+	rimAngle?: string;
+	/**
+	 * 光晕模糊半径
+	 */
+	blurRadius?: string;
 	/**
 	 * hover 时放大倍数
 	 */
@@ -25,6 +33,8 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 		height,
 		hoverScale = 1.0,
 		borderRadius = "16px",
+		rimAngle = "-52deg",
+		blurRadius = "24px",
 	} = props;
 	// 定义动画状态（鼠标进入/移出）
 	const [isHovered, setIsHovered] = useState(false);
@@ -67,11 +77,12 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 					{
 						"--rim-angle": "0deg",
 						"--border-radius": borderRadius,
+						"--blur-radius": blurRadius,
 					} as React.CSSProperties
 				}
 				initial={{ opacity: 0 }}
 				animate={{
-					"--rim-angle": isHovered ? "-52deg" : "0deg",
+					"--rim-angle": isHovered ? rimAngle : "0deg",
 					opacity: isHovered ? 0.75 : 0,
 				}}
 				transition={{

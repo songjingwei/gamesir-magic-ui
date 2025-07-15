@@ -75,6 +75,7 @@ export default MyComponent;
 | `height` | `number` | `可选` | 卡片的高度，单位为像素 (px)。不设置时，默认为 `h-full`。 |
 | `hoverScale` | `number` | `1.0` | 鼠标悬停时卡片的放大倍数，默认为 `1.0` (即不放大)。 |
 | `className` | `string` | `''` | 传递自定义的 Tailwind CSS 类名。 |
+| `blurRadius` | `string` | `'8px'` | 控制辉光模糊的半径，支持 px、rem 等 css 单位。 |
 | `borderRadius` | `string` | `可选` | 设置卡片的圆角半径，支持 px、rem 等 css 单位。 |
 
 ## English
@@ -148,6 +149,7 @@ export default MyComponent;
 | `height` | `number` | `Optional` | The height of the card in pixels (px). Defaults to `h-full` if not set. |
 | `hoverScale` | `number` | `1.0` | The scaling factor of the card on hover, defaults to `1.0` (no scaling). |
 | `className` | `string` | `''` | Pass custom Tailwind CSS class names. |
+| `blurRadius` | `string` | `'8px'` | Controls the blur radius of the glow, supporting css units like px, rem, etc. |
 | `borderRadius` | `string` | `Optional` | Sets the border radius of the card, supporting css units like px, rem, etc. |
 
 ## 🌟 特性 (Features)

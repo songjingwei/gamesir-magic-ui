@@ -33,6 +33,6 @@
 }
 
 .gamesir-glowing-card::before {
-	filter: blur(24px);
+	filter: blur(var(--blur-radius));
 	opacity: 0.7;
 }
