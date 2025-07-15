@@ -1,7 +1,7 @@
 import "./index.css";
 import React, { useState, useEffect } from "react"; // 导入 useState 和 useEffect
 import { GlowingCard } from "./components/GlowingCard";
-import NetworkSpeedVisualizer from "./components/NetworkSpeedVisualizer"; // 导入 NetworkSpeedVisualizer
+import { NetworkSpeedVisualizer } from "./components/NetworkSpeedVisualizer"; // 导入 NetworkSpeedVisualizer
 
 const Preview: React.FC = () => {
 	const [networkSpeed, setNetworkSpeed] = useState<number>(

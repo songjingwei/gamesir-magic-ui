@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { cn } from "../../lib/utils";
 
 interface NetworkSpeedVisualizerProps {
 	/**
@@ -140,4 +139,4 @@ const NetworkSpeedVisualizer: React.FC<NetworkSpeedVisualizerProps> = ({
 	);
 };
 
-export default NetworkSpeedVisualizer;
+export { NetworkSpeedVisualizer };

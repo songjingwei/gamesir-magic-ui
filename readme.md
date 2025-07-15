@@ -78,6 +78,55 @@ export default MyComponent;
 | `blurRadius` | `string` | `'8px'` | 控制辉光模糊的半径，支持 px、rem 等 css 单位。 |
 | `borderRadius` | `string` | `可选` | 设置卡片的圆角半径，支持 px、rem 等 css 单位。 |
 
+#### NetworkSpeedVisualizer 组件
+
+`NetworkSpeedVisualizer` 是一个用于可视化网络速度的动态柱状图组件。它能够实时展示网络速度的变化，通过柱子的高度和透明度来直观地反映速度的波动。柱子从左到右，透明度逐渐提高（越靠左越暗），模拟信号逐渐增强的视觉效果。
+
+![NetworkSpeedVisualizer 示例](https://github.com/songjingwei/gamesir-assets/blob/main/network-speed-visualizer.jpg?raw=true) <!-- 请替换为实际的截图链接 -->
+
+**导入和使用：**
+
+```tsx
+import React, { useState, useEffect } => from 'react';
+import NetworkSpeedVisualizer from './src/components/NetworkSpeedVisualizer'; // 请根据实际路径调整
+
+const MyNetworkMonitor = () => {
+  const [speed, setSpeed] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // 模拟随机的网络速度，范围 0-10000 kbps
+      setSpeed(Math.floor(Math.random() * 10000));
+    }, 500); // 每 500ms 更新一次
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ width: '400px', height: '150px', backgroundColor: '#333' }}>
+      <NetworkSpeedVisualizer speed={speed} maxSpeed={10000} />
+    </div>
+  );
+};
+
+export default MyNetworkMonitor;
+```
+
+**`NetworkSpeedVisualizerProps` 接口属性：** ⚙️
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| :------- | :----- | :------ | :----------- |
+| `speed` | `number` | `无` | 当前下载速度 (kbps)，必需属性。 |
+| `maxSpeed` | `number` | `1000000` | 最高速度 (kbps)，用于计算柱子高度的基准，默认 1000M/s。 |
+| `width` | `string` | `'100%'` | 可视化区域的宽度。 |
+| `height` | `string` | `'120px'` | 可视化区域的高度。 |
+| `maxBarHeight` | `number` | `150` | 柱子的最大高度 (px)。 |
+| `barWidth` | `number` | `4` | 柱子的固定宽度 (px)。 |
+| `barGap` | `number` | `6` | 柱子之间的间距 (px)。 |
+| `maxBars` | `number` | `32` | 柱子保留的数量。 |
+| `barColor` | `string` | `'#97FDE6'` | 柱子的颜色，从左到右会逐渐变亮。 |
+| `updateInterval` | `number` | `300` | 更新柱子的间隔时间 (ms)。 |
+
 ## English
 
 ### Project Introduction
