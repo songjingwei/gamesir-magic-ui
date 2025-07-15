@@ -126,7 +126,7 @@ export default MyNetworkMonitor;
 | `maxBars` | `number` | `32` | 柱子保留的数量。 |
 | `barColor` | `string` | `'#97FDE6'` | 柱子的颜色，从左到右会逐渐变亮。 |
 | `updateInterval` | `number` | `300` | 更新柱子的间隔时间 (ms)。 |
-| `paused` | `boolean` | `false` | 是否暂停可视化，暂停后柱子不再新生成，也不再从右往左运动。 |
+| `paused` | `boolean` | `false` | Whether to pause the visualization. When paused, new bars will not be generated and existing bars will stop moving from right to left. |
 
 ## English
 
@@ -202,65 +202,115 @@ export default MyComponent;
 | `blurRadius` | `string` | `'8px'` | Controls the blur radius of the glow, supporting css units like px, rem, etc. |
 | `borderRadius` | `string` | `Optional` | Sets the border radius of the card, supporting css units like px, rem, etc. |
 
-## 🌟 特性 (Features)
+#### NetworkSpeedVisualizer Component
 
--   **高性能动画**：采用 `motion` 库实现流畅、响应式的动画效果。
--   **高度可定制**：通过 `props` 轻松调整组件的样式和行为。
--   **开箱即用**：提供即插即用的组件，快速集成到您的项目中。
--   **TypeScript 支持**：提供完整的类型定义，增强开发体验。
+`NetworkSpeedVisualizer` is a dynamic bar chart component for visualizing network speed. It can display real-time changes in network speed, intuitively reflecting speed fluctuations through the height and opacity of the bars. Bars gradually increase in opacity from left to right (darker on the left, brighter on the right), simulating a gradually strengthening signal effect.
 
-## 🚀 开发 (Development)
+![NetworkSpeedVisualizer Example](https://github.com/songjingwei/gamesir-assets/blob/main/network-speed-visualizer.jpg?raw=true) <!-- Replace with actual screenshot link -->
 
-本项目使用 `Vite` 作为构建工具，`React` 作为前端框架。
+**Import and Usage:**
 
-### 环境准备
+```tsx
+import React, { useState, useEffect } from 'react';
+import { NetworkSpeedVisualizer } from './src/components/NetworkSpeedVisualizer'; // Adjust path as needed
 
-确保您的开发环境已安装 `Node.js` (推荐 v16+) 和 `pnpm` (或 `npm`/`yarn`)。
+const MyNetworkMonitor = () => {
+  const [speed, setSpeed] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate random network speed, range 0-10000 kbps
+      setSpeed(Math.floor(Math.random() * 10000));
+    }, 500); // Update every 500ms
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ width: '400px', height: '150px', backgroundColor: '#333' }}>
+      <NetworkSpeedVisualizer speed={speed} maxSpeed={10000} />
+    </div>
+  );
+};
+
+export default MyNetworkMonitor;
+```
+
+**`NetworkSpeedVisualizerProps` Interface Properties:** ⚙️
+
+| Prop Name | Type | Default Value | Description |
+| :------- | :----- | :------ | :----------- |
+| `speed` | `number` | `None` | Current download speed (kbps), required. |
+| `maxSpeed` | `number` | `1000000` | Maximum speed (kbps), used as a baseline for calculating bar height, defaults to 1000M/s. |
+| `width` | `string` | `'100%'` | Width of the visualization area. |
+| `height` | `string` | `'120px'` | Height of the visualization area. |
+| `maxBarHeight` | `number` | `150` | Maximum height of the bars (px). |
+| `barWidth` | `number` | `4` | Fixed width of the bars (px). |
+| `barGap` | `number` | `6` | Gap between bars (px). |
+| `maxBars` | `number` | `32` | Number of bars to retain. |
+| `barColor` | `string` | `'#97FDE6'` | Color of the bars, gradually brightens from left to right. |
+| `updateInterval` | `number` | `300` | Interval for updating bars (ms). |
+| `paused` | `boolean` | `false` | Whether to pause the visualization. When paused, new bars will not be generated and existing bars will stop moving from right to left. |
+
+## 🌟 Features
+
+-   **High-Performance Animations**: Utilizes the `motion` library for smooth, responsive animation effects.
+-   **Highly Customizable**: Easily adjust component styles and behaviors via `props`.
+-   **Out-of-the-Box**: Provides plug-and-play components for quick integration into your projects.
+-   **TypeScript Support**: Offers full type definitions for an enhanced development experience.
+
+## 🚀 Development
+
+This project uses `Vite` as the build tool and `React` as the frontend framework.
+
+### Environment Setup
+
+Ensure `Node.js` (recommended v16+) and `pnpm` (or `npm`/`yarn`) are installed in your development environment.
 
 ```bash
-# 推荐使用 pnpm
+# Recommended to use pnpm
 npm install -g pnpm
 ```
 
-### 本地开发
+### Local Development
 
-1.  克隆仓库：
+1.  Clone the repository:
     ```bash
     git clone https://github.com/your-username/gamesir-magic-ui.git
     cd gamesir-magic-ui
     ```
-2.  安装依赖：
+2.  Install dependencies:
     ```bash
     pnpm install
-    # 或者 npm install / yarn install
+    # Or npm install / yarn install
     ```
-3.  启动开发服务器：
+3.  Start the development server:
     ```bash
     pnpm run dev
-    # 或者 npm run dev / yarn dev
+    # Or npm run dev / yarn dev
     ```
-    这将在本地启动一个开发服务器，通常在 `http://localhost:5173`。
+    This will start a local development server, usually at `http://localhost:5173`.
 
-### 构建项目
+### Building the Project
 
 ```bash
 pnpm run build
-# 或者 npm run build / yarn build
+# Or npm run build / yarn build
 ```
-构建后的文件将输出到 `dist` 目录。
+The built files will be output to the `dist` directory.
 
-## 🤝 贡献 (Contributing)
+## 🤝 Contributing
 
-我们非常欢迎社区的贡献！如果您有任何想法、建议或发现了 bug，请随时通过以下方式联系我们：
+We warmly welcome contributions from the community! If you have any ideas, suggestions, or find bugs, feel free to contact us through:
 
--   提交 [Issue](https://github.com/songjingwei/gamesir-magic-ui/issues)
--   提交 [Pull Request](https://github.com/songjingwei/gamesir-magic-ui/pulls)
+-   Submitting an [Issue](https://github.com/songjingwei/gamesir-magic-ui/issues)
+-   Submitting a [Pull Request](https://github.com/songjingwei/gamesir-magic-ui/pulls)
 
-在提交 PR 之前，请确保您的代码符合项目规范并通过所有测试。
+Before submitting a PR, please ensure your code adheres to project guidelines and passes all tests.
 
-## 📜 许可证 (License)
+## 📜 License
 
-本项目采用 [MIT License](https://opensource.org/licenses/MIT) 开源。
+This project is open-sourced under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
