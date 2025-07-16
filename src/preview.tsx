@@ -5,6 +5,11 @@ import { GlowingCard } from "./components/GlowingCard";
 import { NetworkSpeedVisualizer } from "./components/NetworkSpeedVisualizer";
 import { PhoneNumberInput } from "./components/PhoneNumberInput"; // 导入 PhoneNumberInput
 import { Button } from "./components/ui/button"; // 导入 Button
+import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
+
+import Background from "./assets/background_grid.svg";
+import Effect1 from "./assets/light_effect1.png";
+import Effect2 from "./assets/light_effect2.png";
 
 interface IFormInputs {
 	phone: {
@@ -79,7 +84,7 @@ const Preview: React.FC = () => {
 				</div>
 
 				{/* PhoneNumberInput display area */}
-				<div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-start">
+				<div className="col-span-1 bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-start">
 					<h2 className="text-xl font-bold text-white mb-4">
 						Phone Number Input
 					</h2>
@@ -114,6 +119,25 @@ const Preview: React.FC = () => {
 								Submit
 							</Button>
 						</form>
+					</div>
+				</div>
+
+				{/* LightScanEffect display area */}
+				<div className="bg-gray-800 col-span-2 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">
+						Light Scan Effect
+					</h2>
+					<div className="flex w-full justify-center">
+						<div className="w-full h-[169px] relative overflow-hidden">
+							<LightScanEffect
+								width="100%"
+								height="100%"
+								rotate180={false}
+								backgroundImage={Background}
+								lightEffect1Image={Effect1}
+								lightEffect2Image={Effect2}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

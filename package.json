@@ -13,7 +13,7 @@
 			"import": "./dist/gamesir-magic-ui.es.js",
 			"require": "./dist/gamesir-magic-ui.umd.cjs"
 		},
-		"./dist/style.css": "./dist/assets/style.css"
+		"./dist/index.css": "./dist/index.css"
 	},
 	"files": [
 		"dist",

@@ -9,7 +9,7 @@ import dts from "vite-plugin-dts"; // 导入 dts 插件
 export default defineConfig({
 	base: "./", // 添加 base 路径
 	root: ".", // 将根目录设置为当前目录
-	publicDir: "public", // 将 public 目录设置为静态资源目录
+	// publicDir: "public", // 将 public 目录设置为静态资源目录
 	plugins: [react(), tailwindcss(), dts({ rollupTypes: true })], // 添加 dts 插件
 	resolve: {
 		alias: {
@@ -35,7 +35,10 @@ export default defineConfig({
 					"react-dom": "ReactDOM",
 				},
 				// 在 UMD 构建模式下为外部依赖提供一个全局变量
-				assetFileNames: "assets/[name].[ext]",
+				assetFileNames: (assetInfo) => {
+					if (assetInfo.name === "style.css") return "index.css";
+					return "assets/[name].[ext]";
+				},
 			},
 		},
 	},
