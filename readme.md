@@ -128,130 +128,6 @@ export default MyNetworkMonitor;
 | `updateInterval` | `number` | `300` | 更新柱子的间隔时间 (ms)。 |
 | `paused` | `boolean` | `false` | Whether to pause the visualization. When paused, new bars will not be generated and existing bars will stop moving from right to left. |
 
-## English
-
-### Project Introduction
-
-Welcome to Gamesir Magic UI Components Library! 🌟 This is a frontend component library meticulously designed and developed by the **Gamesir Game Project Team**. We are dedicated to providing a series of high-performance, creative, and easy-to-use special effects components, aiming to add unique visual charm and enhance user experience for your Web applications. This library focuses on details and performance optimization, ensuring smooth operation across various devices and scenarios. ✨
-
-### Essential Information
-
-#### Installation/Acquisition
-
-Currently, the component library is not yet published to a public registry. You can acquire it by cloning this repository:
-
-```bash
-# Placeholder: Installation commands will be provided here once the library is published to npm or yarn
-# npm install gamesir-magic-ui
-# yarn add gamesir-magic-ui
-```
-
-#### Running Examples or Preview Pages
-
-After cloning this project, you can run examples or preview pages using the following commands:
-
-```bash
-npm install
-npm run dev
-```
-
-### Component Usage
-
-#### GlowingCard Component
-
-`GlowingCard` is a card component with a dynamic glowing border effect. When the mouse hovers over it, the glow appears and disappears with an animation, providing an attractive visual focus for your content area. 🤩 By default, it fills the entire space of its parent container (`w-full h-full`), and you can customize its dimensions via the `className` prop.
-
-![GlowingCard Example](https://github.com/songjingwei/gamesir-assets/blob/main/glowing-card.jpg?raw=true)
-
-**Animation Behavior Updates:**
-
-*   **`--rim-angle` Animation**: When the mouse leaves, the `--rim-angle` animation now uses a `linear` easing function for smoother transitions.
-*   **Dynamic Transitions**: The `opacity` and `--rim-angle` transition effects dynamically adjust based on the mouse entering (`isEntering`) or leaving (`isLeaving`) states, providing a more natural user experience.
-
-**Import and Usage:**
-
-```tsx
-import React from 'react';
-import { GlowingCard } from './src/components/GlowingCard'; // Adjust path as needed
-
-const MyComponent = () => {
-  return (
-    <div style={{ width: '300px', height: '200px' }} className="mt-10">
-      <GlowingCard className="rounded-2xl" borderRadius="1rem">
-        <div style={{ padding: '20px', color: 'white' }}>
-          <h2>My Card Title</h2>
-          <p>Card content goes here.</p>
-        </div>
-      </GlowingCard>
-    </div>
-  );
-};
-
-export default MyComponent;
-```
-
-**`IGlowingCardProps` Interface Properties:** ⚙️
-
-| Prop Name | Type | Default Value | Description |
-| :------- | :----- | :------ | :----------- |
-| `children` | `React.ReactElement` | `undefined` | The React element to be rendered inside the card. |
-| `width` | `number` | `Optional` | The width of the card in pixels (px). Defaults to `w-full` if not set. |
-| `height` | `number` | `Optional` | The height of the card in pixels (px). Defaults to `h-full` if not set. |
-| `hoverScale` | `number` | `1.0` | The scaling factor of the card on hover, defaults to `1.0` (no scaling). |
-| `className` | `string` | `''` | Pass custom Tailwind CSS class names. |
-| `blurRadius` | `string` | `'8px'` | Controls the blur radius of the glow, supporting css units like px, rem, etc. |
-| `borderRadius` | `string` | `Optional` | Sets the border radius of the card, supporting css units like px, rem, etc. |
-
-#### NetworkSpeedVisualizer Component
-
-`NetworkSpeedVisualizer` is a dynamic bar chart component for visualizing network speed. It can display real-time changes in network speed, intuitively reflecting speed fluctuations through the height and opacity of the bars. Bars gradually increase in opacity from left to right (darker on the left, brighter on the right), simulating a gradually strengthening signal effect.
-
-![NetworkSpeedVisualizer Example](https://github.com/songjingwei/gamesir-assets/blob/main/network-speed-visualizer.jpg?raw=true) <!-- Replace with actual screenshot link -->
-
-**Import and Usage:**
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { NetworkSpeedVisualizer } from './src/components/NetworkSpeedVisualizer'; // Adjust path as needed
-
-const MyNetworkMonitor = () => {
-  const [speed, setSpeed] = useState<number>(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Simulate random network speed, range 0-10000 kbps
-      setSpeed(Math.floor(Math.random() * 10000));
-    }, 500); // Update every 500ms
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div style={{ width: '400px', height: '150px', backgroundColor: '#333' }}>
-      <NetworkSpeedVisualizer speed={speed} maxSpeed={10000} />
-    </div>
-  );
-};
-
-export default MyNetworkMonitor;
-```
-
-**`NetworkSpeedVisualizerProps` Interface Properties:** ⚙️
-
-| Prop Name | Type | Default Value | Description |
-| :------- | :----- | :------ | :----------- |
-| `speed` | `number` | `None` | Current download speed (kbps), required. |
-| `maxSpeed` | `number` | `1000000` | Maximum speed (kbps), used as a baseline for calculating bar height, defaults to 1000M/s. |
-| `width` | `string` | `'100%'` | Width of the visualization area. |
-| `height` | `string` | `'120px'` | Height of the visualization area. |
-| `maxBarHeight` | `number` | `150` | Maximum height of the bars (px). |
-| `barWidth` | `number` | `4` | Fixed width of the bars (px). |
-| `barGap` | `number` | `6` | Gap between bars (px). |
-| `maxBars` | `number` | `32` | Number of bars to retain. |
-| `barColor` | `string` | `'#97FDE6'` | Color of the bars, gradually brightens from left to right. |
-| `updateInterval` | `number` | `300` | Interval for updating bars (ms). |
-| `paused` | `boolean` | `false` | Whether to pause the visualization. When paused, new bars will not be generated and existing bars will stop moving from right to left. |
-
 ## 🌟 Features
 
 -   **High-Performance Animations**: Utilizes the `motion` library for smooth, responsive animation effects.
@@ -316,3 +192,61 @@ This project is open-sourced under the [MIT License](https://opensource.org/lice
 
 Made with ❤️ by Gamesir Gamehub Project Team
 
+## PhoneNumberInput 组件
+
+[`PhoneNumberInput`](src/components/PhoneNumberInput/index.tsx) 是一个用于输入电话号码的复合组件，它结合了区号选择和手机号码输入框。
+
+### 功能
+
+*   **区号选择:** 用户可以通过下拉菜单选择国家或地区的区号。
+*   **手机号码输入:** 提供一个输入框供用户输入手机号码。
+*   **受控组件:** 通过 `value` 和 `onChange` 属性管理组件状态。
+
+### 属性 (Props)
+
+| 属性名       | 类型                                | 描述                                       | 默认值          |
+| :----------- | :---------------------------------- | :----------------------------------------- | :-------------- |
+| `areaCodes`  | `AreaCode[]`                        | 区号对象数组，每个对象包含 `name` 和 `code`。 | 无              |
+| `value`      | `PhoneNumber`                       | 当前组件的值，包含 `areaCode` 和 `phoneNumber`。 | 无              |
+| `onChange`   | `(value: PhoneNumber) => void`      | 当区号或手机号码变化时调用的回调函数。     | 无              |
+| `className`  | `string`                            | 应用于组件根元素的额外 CSS 类名。          | `""`            |
+| `placeholder`| `string`                            | 手机号码输入框的占位符文本。               | `"输入手机号码"` |
+| `activeColor`| `string`                            | 组件激活状态的颜色。                       | `"#BAD7F5"`     |
+| `hoverColor` | `string`                            | 组件悬停状态的颜色。                       | `"#92D6FF"`     |
+
+### 使用示例
+
+```jsx
+import React from "react";
+import { PhoneNumberInput } from "./src/components/PhoneNumberInput"; // 导入组件
+
+const App = () => {
+  const [phoneInfo, setPhoneInfo] = React.useState({
+    areaCode: "86", // 默认区号
+    phoneNumber: ""
+  });
+
+  const availableCountries = [
+    { name: "中国", code: "86" },
+    { name: "美国", code: "1" },
+    { name: "加拿大", code: "1" },
+    // ...更多国家和区号
+  ];
+
+  return (
+    <div>
+      <h1>联系信息</h1>
+      <PhoneNumberInput
+        areaCodes={availableCountries}
+        value={phoneInfo}
+        onChange={setPhoneInfo}
+        placeholder="请输入您的手机号码"
+        activeColor="#4CAF50"
+        hoverColor="#8BC34A"
+      />
+      <p>当前的手机号码: {phoneInfo.areaCode} {phoneInfo.phoneNumber}</p>
+    </div>
+  );
+};
+
+export default App;
