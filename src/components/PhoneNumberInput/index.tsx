@@ -106,7 +106,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						"--hover-color": hoverColor,
 					} as React.CSSProperties
 				}
-				placeholder="输入手机号码"
+				placeholder={placeholder}
 				onChange={handlePhoneNumberChange}
 				onFocus={handlePhoneNumberFocus}
 				onBlur={handlePhoneNumberBlur}
