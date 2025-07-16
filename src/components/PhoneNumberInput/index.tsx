@@ -70,7 +70,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						}
 					>
 						<div className="absolute inset-0 pointer-events-none rounded-bl-[8px] rounded-tl-[8px]" />
-						<div className="flex flex-col font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-[16px] text-left text-nowrap align-middle">
+						<div className="flex flex-col font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
 							{selectedAreaCode?.code || areaCodes[0].code}
 						</div>
 						<ArrowDownIcon />
@@ -99,7 +99,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				</DropdownMenuContent>
 			</DropdownMenu>
 			<Input
-				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] border-[rgba(186,215,245,0.3)] text-[16px] text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0"
+				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] border-[rgba(186,215,245,0.3)] text-[16px]! text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0"
 				style={
 					{
 						"--active-color": activeColor,
