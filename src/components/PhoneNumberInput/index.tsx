@@ -26,7 +26,46 @@ type PhoneNumberInputProps = {
 	placeholder?: string;
 	activeColor?: string;
 	hoverColor?: string;
+	isError?: boolean; // 新增属性，表示是否处于错误状态
+	errorColor?: string; // 新增属性，错误颜色
 };
+
+/**
+ * 将 Hex 颜色转换为带透明度的 RGBA 字符串
+ * @param {string} hex - Hex 颜色（支持 #RRGGBB、#RGB 或无 # 号的 RRGGBB/RGB）
+ * @param {number} alpha - 透明度（0-1，可选，默认 0.5）
+ * @returns {string} RGBA 字符串（如 rgba(255, 0, 0, 0.5)）
+ */
+function hexToRgba(hex: string, alpha = 0.5) {
+	// 清理输入：去除 # 号，统一为小写
+	hex = hex.replace(/^#/, "").toLowerCase();
+
+	// 处理 3 位 Hex（扩展为 6 位）
+	if (hex.length === 3) {
+		hex = hex
+			.split("")
+			.map((c) => c + c)
+			.join("");
+	}
+
+	// 验证 Hex 有效性（必须是 6 位十六进制字符）
+	if (!/^[0-9a-f]{6}$/.test(hex)) {
+		throw new Error("无效的 Hex 颜色值");
+	}
+
+	// 提取 RGB 分量并转换为十进制
+	const r = parseInt(hex.substring(0, 2), 16);
+	const g = parseInt(hex.substring(2, 4), 16);
+	const b = parseInt(hex.substring(4, 6), 16);
+
+	// 验证透明度范围
+	if (alpha < 0 || alpha > 1) {
+		throw new Error("透明度必须在 0-1 之间");
+	}
+
+	// 返回 RGBA 字符串
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	areaCodes,
@@ -35,8 +74,11 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	placeholder = "输入手机号码",
 	activeColor = "#BAD7F5",
 	hoverColor = "#92D6FF",
+	isError = false, // 默认不为错误状态
+	errorColor = "#ff614c", // 默认错误颜色
 }) => {
 	const [isPhoneNumberFocused, setIsPhoneNumberFocused] = useState(false);
+	const [isPhoneNumberHovered, setIsPhoneNumberHovered] = useState(false);
 
 	const handleAreaCodeChange = (areaCode: string) => {
 		onChange({ ...value, areaCode });
@@ -65,7 +107,18 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						style={
 							{
 								"--hover-color": hoverColor,
-								borderRightColor: isPhoneNumberFocused ? hoverColor : undefined,
+								borderRightColor: isError
+									? errorColor
+									: isPhoneNumberFocused
+										? hoverColor
+										: isPhoneNumberHovered
+											? hoverColor
+											: undefined,
+								boxShadow: isError
+									? "2px 0 0 0 rgba(255, 0, 0, 0.2)"
+									: isPhoneNumberFocused
+										? `2px 0 0 0 ${hexToRgba(hoverColor, 0.3)}`
+										: undefined,
 							} as React.CSSProperties
 						}
 					>
@@ -99,14 +152,28 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				</DropdownMenuContent>
 			</DropdownMenu>
 			<Input
-				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] border-[rgba(186,215,245,0.3)] text-[16px]! text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0"
+				onMouseEnter={() => setIsPhoneNumberHovered(true)}
+				onMouseLeave={() => setIsPhoneNumberHovered(false)}
+				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] text-[16px]! text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0  border-[rgba(186,215,245,0.3)]"
 				style={
 					{
 						"--active-color": activeColor,
 						"--hover-color": hoverColor,
+						borderColor: isError
+							? errorColor
+							: isPhoneNumberFocused
+								? hoverColor
+								: isPhoneNumberHovered
+									? hoverColor
+									: undefined,
+						boxShadow: isError
+							? `0 0 0 2px rgba(255, 0, 0, 0.2)`
+							: isPhoneNumberFocused
+								? `0 0 0 2px ${hexToRgba(hoverColor, 0.3)}`
+								: undefined,
 					} as React.CSSProperties
 				}
-				placeholder={placeholder}
+				placeholder={String(isPhoneNumberFocused)}
 				onChange={handlePhoneNumberChange}
 				onFocus={handlePhoneNumberFocus}
 				onBlur={handlePhoneNumberBlur}

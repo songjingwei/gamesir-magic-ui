@@ -106,6 +106,7 @@ const Preview: React.FC = () => {
 										areaCodes={areaCodes}
 										value={field.value}
 										onChange={field.onChange}
+										isError={false}
 										placeholder="Enter phone number"
 									/>
 								)}
