@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import ArrowDownIcon from "./components/ArrowDownIcon";
 import {
@@ -36,9 +36,18 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	activeColor = "#BAD7F5",
 	hoverColor = "#92D6FF",
 }) => {
-	console.log("activeColor: ", activeColor);
+	const [isPhoneNumberFocused, setIsPhoneNumberFocused] = useState(false);
+
 	const handleAreaCodeChange = (areaCode: string) => {
 		onChange({ ...value, areaCode });
+	};
+
+	const handlePhoneNumberFocus = () => {
+		setIsPhoneNumberFocused(true);
+	};
+
+	const handlePhoneNumberBlur = () => {
+		setIsPhoneNumberFocused(false);
 	};
 
 	const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +62,12 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				<DropdownMenuTrigger asChild>
 					<div
 						className="bg-[rgba(186,215,245,0.05)] box-border flex flex-row gap-2.5 items-center justify-start px-2.5 py-[9px] relative rounded-bl-[8px] rounded-tl-[8px] shrink-0 cursor-pointer w-[80px] border border-solid focus:border-[var(--hover-color)] border-[rgba(186,215,245,0.3)] data-[state=open]:border-[var(--hover-color)]"
-						style={{ "--hover-color": hoverColor } as React.CSSProperties}
+						style={
+							{
+								"--hover-color": hoverColor,
+								borderRightColor: isPhoneNumberFocused ? hoverColor : undefined,
+							} as React.CSSProperties
+						}
 					>
 						<div className="absolute inset-0 pointer-events-none rounded-bl-[8px] rounded-tl-[8px]" />
 						<div className="flex flex-col font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-[16px] text-left text-nowrap align-middle">
@@ -85,7 +99,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				</DropdownMenuContent>
 			</DropdownMenu>
 			<Input
-				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-br-[8px] rounded-tr-[8px] rounded-l-none shrink-0 border-[1px] border-[rgba(186,215,245,0.3)] text-[16px] text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)]"
+				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] border-[rgba(186,215,245,0.3)] text-[16px] text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0"
 				style={
 					{
 						"--active-color": activeColor,
@@ -94,6 +108,8 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				}
 				placeholder="输入手机号码"
 				onChange={handlePhoneNumberChange}
+				onFocus={handlePhoneNumberFocus}
+				onBlur={handlePhoneNumberBlur}
 			/>
 		</div>
 	);
