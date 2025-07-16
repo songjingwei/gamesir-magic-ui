@@ -5,9 +5,10 @@ interface ILightScanEffectProps {
 	width?: string;
 	height?: string;
 	rotate180?: boolean; // 新增属性
-	backgroundImage?: string; // 背景图URL
-	lightEffect1Image?: string; // 光效1图URL
-	lightEffect2Image?: string; // 光效2图URL
+	backgroundImage: string; // 背景图URL
+	lightEffect1Image: string; // 光效1图URL
+	lightEffect2Image: string; // 光效2图URL
+	duration?: number; // 动画时长，单位秒，默认3秒
 }
 
 export const LightScanEffect: React.FC<ILightScanEffectProps> = (props) => {
@@ -18,6 +19,7 @@ export const LightScanEffect: React.FC<ILightScanEffectProps> = (props) => {
 		backgroundImage,
 		lightEffect1Image,
 		lightEffect2Image,
+		duration = 3, // 默认3秒
 	} = props;
 
 	const containerStyle: React.CSSProperties = {
@@ -34,6 +36,7 @@ export const LightScanEffect: React.FC<ILightScanEffectProps> = (props) => {
 		"--gamesir-light-effect-2-image": lightEffect2Image
 			? `url(${lightEffect2Image})`
 			: undefined,
+		"--gamesir-scan-animation-duration": `${duration}s`, // 动态设置动画时长
 	} as React.CSSProperties; // 类型断言以避免 TypeScript 错误
 
 	// 移除单独的 backgroundStyle, lightEffect1Style, lightEffect2Style

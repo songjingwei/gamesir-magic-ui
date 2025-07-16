@@ -32,7 +32,8 @@
 	);
 	background-size: 100% auto; /* Adjust to cover width, maintain aspect ratio */
 	background-repeat: no-repeat;
-	animation: gamesir-scan-animation 6s linear infinite; /* 3s duration, linear, infinite loop */
+	animation: gamesir-scan-animation var(--gamesir-scan-animation-duration, 3s)
+		linear infinite; /* 3s duration, linear, infinite loop */
 }
 
 .gamesir-light-effect-2 {
@@ -47,7 +48,8 @@
 	);
 	background-size: 100% auto; /* Adjust to cover width, maintain aspect ratio */
 	background-repeat: no-repeat;
-	animation: gamesir-scan-animation 6s linear infinite; /* 3s duration, linear, infinite loop, with a 1.5s delay */
+	animation: gamesir-scan-animation var(--gamesir-scan-animation-duration, 3s)
+		linear infinite; /* 3s duration, linear, infinite loop, with a 1.5s delay */
 }
 
 @keyframes gamesir-scan-animation {
