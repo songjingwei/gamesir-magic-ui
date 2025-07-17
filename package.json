@@ -2,7 +2,7 @@
 	"name": "gamesir-magic-ui",
 	"private": false,
 	"license": "MIT",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"type": "module",
 	"main": "./dist/gamesir-magic-ui.umd.cjs",
 	"module": "./dist/gamesir-magic-ui.es.js",

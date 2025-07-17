@@ -173,7 +173,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 								: undefined,
 					} as React.CSSProperties
 				}
-				placeholder={String(isPhoneNumberFocused)}
+				placeholder={placeholder}
 				onChange={handlePhoneNumberChange}
 				onFocus={handlePhoneNumberFocus}
 				onBlur={handlePhoneNumberBlur}
