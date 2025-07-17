@@ -128,6 +128,154 @@ export default MyNetworkMonitor;
 | `updateInterval` | `number` | `300` | 更新柱子的间隔时间 (ms)。 |
 | `paused` | `boolean` | `false` | Whether to pause the visualization. When paused, new bars will not be generated and existing bars will stop moving from right to left. |
 
+#### LightScanEffect 组件
+
+`LightScanEffect` 是一个用于创建动态扫描光效的组件。它通过控制背景图和两个光效图片的动画，模拟出光线扫描的视觉效果，常用于加载、等待或高亮提示。
+
+![LightScanEffect 示例](https://github.com/songjingwei/gamesir-assets/blob/main/light-scan-effect.jpg?raw=true)
+
+**导入和使用：**
+
+```tsx
+import React from 'react';
+import { LightScanEffect } from './src/components/LightScanEffect'; // 请根据实际路径调整
+import backgroundImage from './src/assets/background_grid.svg';
+import lightEffect1Image from './src/assets/light_effect1.png';
+import lightEffect2Image from './src/assets/light_effect2.png';
+
+const MyScanComponent = () => {
+  return (
+    <div style={{ width: '300px', height: '200px', border: '1px solid gray' }}>
+      <LightScanEffect
+        backgroundImage={backgroundImage}
+        lightEffect1Image={lightEffect1Image}
+        lightEffect2Image={lightEffect2Image}
+        duration={5} // 动画时长5秒
+      />
+    </div>
+  );
+};
+
+export default MyScanComponent;
+```
+
+**`ILightScanEffectProps` 接口属性：** ⚙️
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| :------- | :----- | :------ | :----------- |
+| `width` | `string` | `'100%'` | 组件的宽度。 |
+| `height` | `string` | `'100%'` | 组件的高度。 |
+| `rotate180` | `boolean` | `false` | 是否将组件旋转180度。 |
+| `backgroundImage` | `string` | `无` | 背景图片的 URL。 |
+| `lightEffect1Image` | `string` | `无` | 第一个光效图片的 URL。 |
+| `lightEffect2Image` | `string` | `无` | 第二个光效图片的 URL。 |
+| `duration` | `number` | `3` | 动画时长，单位秒。 |
+
+---
+
+#### LightScanEffect Component
+
+`LightScanEffect` is a component used to create dynamic scanning light effects. It simulates a light scanning visual effect by animating a background image and two light effect images, commonly used for loading, waiting, or highlighting prompts.
+
+![LightScanEffect Example](https://github.com/songjingwei/gamesir-assets/blob/main/light-scan-effect.jpg?raw=true)
+
+**Import and Usage:**
+
+```tsx
+import React from 'react';
+import { LightScanEffect } from './src/components/LightScanEffect'; // Adjust path as needed
+import backgroundImage from './src/assets/background_grid.svg';
+import lightEffect1Image from './src/assets/light_effect1.png';
+import lightEffect2Image from './src/assets/light_effect2.png';
+
+const MyScanComponent = () => {
+  return (
+    <div style={{ width: '300px', height: '200px', border: '1px solid gray' }}>
+      <LightScanEffect
+        backgroundImage={backgroundImage}
+        lightEffect1Image={lightEffect1Image}
+        lightEffect2Image={lightEffect2Image}
+        duration={5} // Animation duration in seconds
+      />
+    </div>
+  );
+};
+
+export default MyScanComponent;
+```
+
+**`ILightScanEffectProps` Interface Properties:** ⚙️
+
+| Property Name | Type | Default Value | Description |
+| :------- | :----- | :------ | :----------- |
+| `width` | `string` | `'100%'` | The width of the component. |
+| `height` | `string` | `'100%'` | The height of the component. |
+| `rotate180` | `boolean` | `false` | Whether to rotate the component by 180 degrees. |
+| `backgroundImage` | `string` | `None` | The URL of the background image. |
+| `lightEffect1Image` | `string` | `None` | The URL of the first light effect image. |
+| `lightEffect2Image` | `string` | `None` | The URL of the second light effect image. |
+| `duration` | `number` | `3` | Animation duration in seconds. |
+
+#### PhoneNumberInput 组件
+
+[`PhoneNumberInput`](src/components/PhoneNumberInput/index.tsx) 是一个用于输入电话号码的复合组件，它结合了区号选择和手机号码输入框。
+
+![PhoneNumberInput 示例](https://github.com/songjingwei/gamesir-assets/blob/main/phone-number-input.jpg?raw=true)
+
+### 功能
+
+*   **区号选择:** 用户可以通过下拉菜单选择国家或地区的区号。
+*   **手机号码输入:** 提供一个输入框供用户输入手机号码。
+*   **受控组件:** 通过 `value` 和 `onChange` 属性管理组件状态。
+
+### 属性 (Props)
+
+| 属性名       | 类型                                | 描述                                       | 默认值          |
+| :----------- | :---------------------------------- | :----------------------------------------- | :-------------- |
+| `areaCodes`  | `AreaCode[]`                        | 区号对象数组，每个对象包含 `name` 和 `code`。 | 无              |
+| `value`      | `PhoneNumber`                       | 当前组件的值，包含 `areaCode` 和 `phoneNumber`。 | 无              |
+| `onChange`   | `(value: PhoneNumber) => void`      | 当区号或手机号码变化时调用的回调函数。     | 无              |
+| `className`  | `string`                            | 应用于组件根元素的额外 CSS 类名。          | `""`            |
+| `placeholder`| `string`                            | 手机号码输入框的占位符文本。               | `"输入手机号码"` |
+| `activeColor`| `string`                            | 组件激活状态的颜色。                       | `"#BAD7F5"`     |
+| `hoverColor` | `string`                            | 组件悬停状态的颜色。                       | `"#92D6FF"`     |
+
+### 使用示例
+
+```jsx
+import React from "react";
+import { PhoneNumberInput } from "./src/components/PhoneNumberInput"; // 导入组件
+
+const App = () => {
+  const [phoneInfo, setPhoneInfo] = React.useState({
+    areaCode: "86", // 默认区号
+    phoneNumber: ""
+  });
+
+  const availableCountries = [
+    { name: "中国", code: "86" },
+    { name: "美国", code: "1" },
+    { name: "加拿大", code: "1" },
+    // ...更多国家和区号
+  ];
+
+  return (
+    <div>
+      <h1>联系信息</h1>
+      <PhoneNumberInput
+        areaCodes={availableCountries}
+        value={phoneInfo}
+        onChange={setPhoneInfo}
+        placeholder="请输入您的手机号码"
+        activeColor="#4CAF50"
+        hoverColor="#8BC34A"
+      />
+      <p>当前的手机号码: {phoneInfo.areaCode} {phoneInfo.phoneNumber}</p>
+    </div>
+  );
+};
+
+export default App;
 ## 🌟 Features
 
 -   **High-Performance Animations**: Utilizes the `motion` library for smooth, responsive animation effects.
@@ -192,61 +340,3 @@ This project is open-sourced under the [MIT License](https://opensource.org/lice
 
 Made with ❤️ by Gamesir Gamehub Project Team
 
-## PhoneNumberInput 组件
-
-[`PhoneNumberInput`](src/components/PhoneNumberInput/index.tsx) 是一个用于输入电话号码的复合组件，它结合了区号选择和手机号码输入框。
-
-### 功能
-
-*   **区号选择:** 用户可以通过下拉菜单选择国家或地区的区号。
-*   **手机号码输入:** 提供一个输入框供用户输入手机号码。
-*   **受控组件:** 通过 `value` 和 `onChange` 属性管理组件状态。
-
-### 属性 (Props)
-
-| 属性名       | 类型                                | 描述                                       | 默认值          |
-| :----------- | :---------------------------------- | :----------------------------------------- | :-------------- |
-| `areaCodes`  | `AreaCode[]`                        | 区号对象数组，每个对象包含 `name` 和 `code`。 | 无              |
-| `value`      | `PhoneNumber`                       | 当前组件的值，包含 `areaCode` 和 `phoneNumber`。 | 无              |
-| `onChange`   | `(value: PhoneNumber) => void`      | 当区号或手机号码变化时调用的回调函数。     | 无              |
-| `className`  | `string`                            | 应用于组件根元素的额外 CSS 类名。          | `""`            |
-| `placeholder`| `string`                            | 手机号码输入框的占位符文本。               | `"输入手机号码"` |
-| `activeColor`| `string`                            | 组件激活状态的颜色。                       | `"#BAD7F5"`     |
-| `hoverColor` | `string`                            | 组件悬停状态的颜色。                       | `"#92D6FF"`     |
-
-### 使用示例
-
-```jsx
-import React from "react";
-import { PhoneNumberInput } from "./src/components/PhoneNumberInput"; // 导入组件
-
-const App = () => {
-  const [phoneInfo, setPhoneInfo] = React.useState({
-    areaCode: "86", // 默认区号
-    phoneNumber: ""
-  });
-
-  const availableCountries = [
-    { name: "中国", code: "86" },
-    { name: "美国", code: "1" },
-    { name: "加拿大", code: "1" },
-    // ...更多国家和区号
-  ];
-
-  return (
-    <div>
-      <h1>联系信息</h1>
-      <PhoneNumberInput
-        areaCodes={availableCountries}
-        value={phoneInfo}
-        onChange={setPhoneInfo}
-        placeholder="请输入您的手机号码"
-        activeColor="#4CAF50"
-        hoverColor="#8BC34A"
-      />
-      <p>当前的手机号码: {phoneInfo.areaCode} {phoneInfo.phoneNumber}</p>
-    </div>
-  );
-};
-
-export default App;
