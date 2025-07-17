@@ -19,9 +19,9 @@ interface IFormInputs {
 }
 
 const areaCodes = [
-	{ name: "China", code: "+86" },
-	{ name: "USA", code: "+1" },
-	{ name: "UK", code: "+44" },
+	{ name: "China", code: "86" },
+	{ name: "USA", code: "1" },
+	{ name: "UK", code: "44" },
 ];
 
 const Preview: React.FC = () => {

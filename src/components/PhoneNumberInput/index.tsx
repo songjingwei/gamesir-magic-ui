@@ -107,24 +107,14 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						style={
 							{
 								"--hover-color": hoverColor,
-								borderRightColor: isError
-									? errorColor
-									: isPhoneNumberFocused
-										? hoverColor
-										: isPhoneNumberHovered
-											? hoverColor
-											: undefined,
-								boxShadow: isError
-									? "2px 0 0 0 rgba(255, 0, 0, 0.2)"
-									: isPhoneNumberFocused
-										? `2px 0 0 0 ${hexToRgba(hoverColor, 0.3)}`
-										: undefined,
+								borderRightWidth: isPhoneNumberFocused ? 0 : 1,
 							} as React.CSSProperties
 						}
 					>
 						<div className="absolute inset-0 pointer-events-none rounded-bl-[8px] rounded-tl-[8px]" />
-						<div className="flex flex-col font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
-							{selectedAreaCode?.code || areaCodes[0].code}
+						<div className="flex font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
+							<div className="relative -top-[1px]">+</div>
+							<span>{selectedAreaCode?.code || areaCodes[0].code}</span>
 						</div>
 						<ArrowDownIcon />
 					</div>
@@ -146,7 +136,8 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 								} as React.CSSProperties
 							}
 						>
-							{area.name} {area.code}
+							{area.name}{" "}
+							{area.code.startsWith("+") ? area.code : `+${area.code}`}
 						</DropdownMenuItem>
 					))}
 				</DropdownMenuContent>
@@ -159,6 +150,8 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 					{
 						"--active-color": activeColor,
 						"--hover-color": hoverColor,
+						borderLeftWidth:
+							isError || isPhoneNumberFocused || isPhoneNumberHovered ? 1 : 0,
 						borderColor: isError
 							? errorColor
 							: isPhoneNumberFocused
