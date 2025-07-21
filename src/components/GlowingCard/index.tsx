@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion, useAnimationControls } from "framer-motion";
 import { cn } from "../../lib/utils";
 import "./index.css";
 
@@ -36,28 +36,43 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 		rimAngle = "-52deg",
 		blurRadius = "24px",
 	} = props;
-	// 定义动画状态（鼠标进入/移出）
 	const [isHovered, setIsHovered] = useState(false);
-	const [isEntering, setIsEntering] = useState(false);
-	const [isLeaving, setIsLeaving] = useState(false);
+	const controls = useAnimationControls();
+
+	// 解析角度值
+	const rimAngleValue = parseFloat(rimAngle);
+	const leaveAngle = `${rimAngleValue * 2}deg`;
 
 	const handleMouseEnter = () => {
-		// console.log("mouse enter");
-		setIsLeaving(false);
-		setIsEntering(true);
 		setIsHovered(true);
-		setTimeout(() => {
-			setIsEntering(false);
-		}, 400);
+		controls.start({
+			"--rim-angle": rimAngle,
+			opacity: 0.75,
+			transition: {
+				duration: 0.2,
+				ease: "easeInOut",
+			},
+		});
 	};
-	const handleMouseLeave = () => {
-		// console.log("mouse leave");
-		setIsEntering(false);
-		setIsLeaving(true);
+
+	const handleMouseLeave = async () => {
 		setIsHovered(false);
-		setTimeout(() => {
-			setIsLeaving(false);
-		}, 400);
+		await controls.start({
+			"--rim-angle": leaveAngle,
+			transition: {
+				duration: 0.2,
+				ease: "linear",
+			},
+		});
+		await controls.start({
+			opacity: 0,
+			transition: {
+				duration: 0.2,
+				ease: "linear",
+			},
+		});
+		// 关键：在动画完成后重置
+		controls.set({ "--rim-angle": "0deg" });
 	};
 
 	return (
@@ -70,6 +85,12 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 				...(height && { height }),
 			}}
 			animate={{ scale: isHovered ? hoverScale : 1 }}
+			transition={{
+				scale: {
+					duration: 1.1,
+					ease: "easeInOut",
+				},
+			}}
 		>
 			<motion.div
 				className="gamesir-glowing-card"
@@ -81,27 +102,7 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 					} as React.CSSProperties
 				}
 				initial={{ opacity: 0 }}
-				animate={{
-					"--rim-angle": isHovered ? rimAngle : "0deg",
-					opacity: isHovered ? 0.75 : 0,
-				}}
-				transition={{
-					scale: {
-						duration: 1.1,
-						ease: "easeInOut",
-					},
-					opacity: {
-						duration: (isEntering && 0.2) || (isLeaving && 0.2) || 0.2,
-						ease: "linear",
-					},
-					"--rim-angle": {
-						duration: 0.2,
-						ease:
-							(isEntering && "easeInOut") ||
-							(isLeaving && "linear") ||
-							"easeInOut",
-					},
-				}}
+				animate={controls}
 			></motion.div>
 			<div
 				className="w-full h-full absolute overflow-hidden"
