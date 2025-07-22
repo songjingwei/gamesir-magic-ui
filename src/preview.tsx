@@ -6,7 +6,7 @@ import { NetworkSpeedVisualizer } from "./components/NetworkSpeedVisualizer";
 import { PhoneNumberInput } from "./components/PhoneNumberInput"; // 导入 PhoneNumberInput
 import { Button } from "./components/ui/button"; // 导入 Button
 import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
-import PlayerReview from "./components/PlayerReview"; // 导入 PlayerReview
+import { PlayerReview } from "./components/PlayerReview"; // 导入 PlayerReview
 
 import Background from "./assets/background_grid.svg";
 import Effect1 from "./assets/light_effect1.png";

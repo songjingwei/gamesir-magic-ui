@@ -2,7 +2,6 @@ import ReviewRectIcon from "@/icons/PlayerReview/ReviewRectIcon";
 import ReviewStarIcon from "@/icons/PlayerReview/ReviewStarIcon";
 import type React from "react";
 import { cn } from "@/lib/utils";
-import { text } from "stream/consumers";
 
 const STATUS_MAP = {
 	好评如潮: {
@@ -48,7 +47,7 @@ const PlayerReview: React.FC<IPlayerReviewProps> = ({ score }) => {
 	const color = STATUS_MAP[status].color;
 
 	return (
-		<div className="flex items-center justify-between p-0">
+		<div className="flex items-center p-0">
 			<div className="relative">
 				<ReviewRectIcon />
 				<div className={cn("absolute -left-1 -top-1")}>
@@ -91,4 +90,4 @@ const PlayerReview: React.FC<IPlayerReviewProps> = ({ score }) => {
 	);
 };
 
-export default PlayerReview;
+export { PlayerReview };
