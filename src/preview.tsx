@@ -6,6 +6,7 @@ import { NetworkSpeedVisualizer } from "./components/NetworkSpeedVisualizer";
 import { PhoneNumberInput } from "./components/PhoneNumberInput"; // 导入 PhoneNumberInput
 import { Button } from "./components/ui/button"; // 导入 Button
 import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
+import PlayerReview from "./components/PlayerReview"; // 导入 PlayerReview
 
 import Background from "./assets/background_grid.svg";
 import Effect1 from "./assets/light_effect1.png";
@@ -139,6 +140,16 @@ const Preview: React.FC = () => {
 								lightEffect2Image={Effect2}
 							/>
 						</div>
+					</div>
+				</div>
+
+				{/* PlayerReview display area */}
+				<div className="bg-gray-800 col-span-1 md:col-span-2 lg:col-span-3 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">Player Review</h2>
+					<div className="w-full flex flex-wrap justify-around items-center gap-4">
+						<PlayerReview score={90} />
+						<PlayerReview score={70} />
+						<PlayerReview score={30} />
 					</div>
 				</div>
 			</div>
