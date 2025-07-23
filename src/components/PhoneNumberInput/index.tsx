@@ -36,7 +36,7 @@ type PhoneNumberInputProps = {
  * @param {number} alpha - 透明度（0-1，可选，默认 0.5）
  * @returns {string} RGBA 字符串（如 rgba(255, 0, 0, 0.5)）
  */
-function hexToRgba(hex: string, alpha = 0.5) {
+export function hexToRgba(hex: string, alpha = 0.5) {
 	// 清理输入：去除 # 号，统一为小写
 	hex = hex.replace(/^#/, "").toLowerCase();
 

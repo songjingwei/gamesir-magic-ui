@@ -7,6 +7,8 @@ import { PhoneNumberInput } from "./components/PhoneNumberInput"; // 导入 Phon
 import { Button } from "./components/ui/button"; // 导入 Button
 import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
 import { PlayerReview } from "./components/PlayerReview"; // 导入 PlayerReview
+import { GlowingButton } from "./components/GlowingButton"; // 导入 GlowingButton
+import { cn } from "./lib/utils"; // 导入 cn 函数
 
 import Background from "./assets/background_grid.svg";
 import Effect1 from "./assets/light_effect1.png";
@@ -142,9 +144,27 @@ const Preview: React.FC = () => {
 						</div>
 					</div>
 				</div>
+				{/* GlowingButton display area */}
+				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">Glowing Button</h2>
+					<div className="w-full flex justify-center">
+						<GlowingButton primaryColor="#98ffe8">
+							<div
+								className={cn(
+									"w-full py-2.5",
+									"rounded-2xl",
+									"flex items-center justify-center",
+									"bg-gradient-to-r from-[#4ef5e4] to-[#98ffe8]",
+								)}
+							>
+								<span>秒玩</span>
+							</div>
+						</GlowingButton>
+					</div>
+				</div>
 
 				{/* PlayerReview display area */}
-				<div className="bg-gray-800 col-span-1 md:col-span-2 lg:col-span-3 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+				<div className="bg-gray-800 col-span-3 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
 					<h2 className="text-xl font-bold text-white mb-4">Player Review</h2>
 					<div className="w-full flex flex-wrap justify-around items-center gap-4">
 						<PlayerReview score={90} />
