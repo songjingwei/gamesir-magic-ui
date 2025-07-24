@@ -8,6 +8,7 @@ import { Button } from "./components/ui/button"; // 导入 Button
 import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
 import { PlayerReview } from "./components/PlayerReview"; // 导入 PlayerReview
 import { GlowingButton } from "./components/GlowingButton"; // 导入 GlowingButton
+import { SvgGlassTag } from "./components"; // 导入 GlassTag 和 SvgGlassTag
 import { cn } from "./lib/utils"; // 导入 cn 函数
 
 import Background from "./assets/background_grid.svg";
@@ -170,6 +171,14 @@ const Preview: React.FC = () => {
 						<PlayerReview score={90} />
 						<PlayerReview score={70} />
 						<PlayerReview score={30} />
+					</div>
+				</div>
+
+				{/* SvgGlassTag display area */}
+				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">Svg Glass Tag</h2>
+					<div className="w-full flex justify-center">
+						<SvgGlassTag>SVG Tag</SvgGlassTag>
 					</div>
 				</div>
 			</div>

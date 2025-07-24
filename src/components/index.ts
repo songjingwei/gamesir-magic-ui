@@ -4,3 +4,4 @@ export * from "./PhoneNumberInput";
 export * from "./LightScanEffect";
 export * from "./PlayerReview";
 export * from "./GlowingButton";
+export * from "./SvgGlassTag";

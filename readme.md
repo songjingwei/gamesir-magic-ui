@@ -240,6 +240,26 @@ export default MyScanComponent;
 | `activeColor`| `string`                            | 组件激活状态的颜色。                       | `"#BAD7F5"`     |
 | `hoverColor` | `string`                            | 组件悬停状态的颜色。                       | `"#92D6FF"`     |
 
+#### PlayerReview 组件
+
+`PlayerReview` 是一个用于展示玩家评分的组件，它能根据传入的分数显示不同的星级和背景颜色，直观地反映玩家评价。
+
+**`IPlayerReviewProps` 接口属性：** ⚙️
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| :------- | :----- | :------ | :----------- |
+| `score` | `number` | `无` | 玩家评分，范围 0-100，必需属性。 |
+
+#### SvgGlassTag 组件
+
+`SvgGlassTag` 是一个基于 SVG 实现的 Tag 标签组件，具有渐变边框效果，支持内容自适应。它使用 SVG 的 `path` 元素绘制边框，并利用渐变实现独特的视觉效果。
+
+**`ISvgGlassTagProps` 接口属性：** ⚙️
+
+| 属性名 | 类型 | 默认值 | 描述 |
+| :------- | :----- | :------ | :----------- |
+| `children` | `React.ReactNode` | `无` | Tag 内部渲染的 React 元素。 |
+
 ### 使用示例
 
 ```jsx
