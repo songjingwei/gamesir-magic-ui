@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import type React from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface ISvgGlassTagProps {
@@ -9,7 +10,6 @@ const SvgGlassTag = ({ children }: ISvgGlassTagProps) => {
 	const [contentWidth, setContentWidth] = useState(0);
 	const [contentHeight, setContentHeight] = useState(0);
 	const contentRef = useRef<HTMLDivElement>(null);
-
 	const cornerRadius = 8; // 模拟 rounded-lg
 	const borderWidth = 1; // 模拟 border-[1px]
 
