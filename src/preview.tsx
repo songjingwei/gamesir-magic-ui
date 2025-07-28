@@ -186,7 +186,7 @@ const Preview: React.FC = () => {
 				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
 					<h2 className="text-xl font-bold text-white mb-4">GlassContainer 预览</h2>
 					<div className="w-full flex justify-center">
-						<GlassContainer borderRadius={12}>
+						<GlassContainer borderRadius={12} onClick={() => { alert("GlassContainer clicked"); }}>
 							<p>你好哇，李银河</p>
 						</GlassContainer>
 					</div>
@@ -196,7 +196,7 @@ const Preview: React.FC = () => {
 				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
 					<h2 className="text-xl font-bold text-white mb-4">CircleGlassContainer 预览</h2>
 					<div className="w-full flex justify-center">
-						<CircleGlassContainer size={60}>
+						<CircleGlassContainer size={60} onClick={() => { alert("CircleGlassContainer clicked"); }}>
 							<p>Circle</p>
 						</CircleGlassContainer>
 					</div>
