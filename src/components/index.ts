@@ -5,3 +5,4 @@ export * from "./LightScanEffect";
 export * from "./PlayerReview";
 export * from "./GlowingButton";
 export * from "./SvgGlassTag";
+export * from "./GlassContainer";
