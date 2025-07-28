@@ -42,6 +42,7 @@ const GlassContainer: React.FC<GlassContainerProps> = ({ children, className, st
         'rounded-lg',
         'relative overflow-hidden',
         'bg-[#bad7f5]/10 backdrop-filter backdrop-blur-lg',
+        'shadow-[0_0_5px_rgba(186,215,245,0.1)]', // 调整阴影效果，使其更柔和
         className || '',
       )}
       style={{
