@@ -225,12 +225,20 @@ const Preview: React.FC = () => {
 				<div className="bg-gray-800 col-span-3 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
 					<h2 className="text-xl font-bold text-white mb-4">Tab Container</h2>
 					<div className="w-full flex justify-center">
-						<TabContainer
-							tabs={[
-								{ title: "云玩时长充值", content: <div>云玩时长充值内容</div> },
-								{ title: "共享账号充值", content: <div>共享账号充值内容</div> },
-							]}
-						/>
+						<div className="w-[852px] h-[561px]">
+							<TabContainer
+								tabs={[
+									{
+										title: "云玩时长充值",
+										content: <div>云玩时长充值内容</div>,
+									},
+									{
+										title: "共享账号充值",
+										content: <div>共享账号充值内容</div>,
+									},
+								]}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
