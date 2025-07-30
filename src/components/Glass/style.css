@@ -1,0 +1,15 @@
+.gamesir-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--glass-border-radius, 8px);
+    background: conic-gradient(from -45deg at 50% 50%, rgba(186, 215, 245, 0.50) 0deg, rgba(186, 215, 245, 0.00) 105.5570912361145deg, rgba(186, 215, 245, 0.00) 127.0165765285492deg, rgba(186, 215, 245, 0.15) 180deg, rgba(186, 215, 245, 0.00) 238.71902704238892deg, rgba(186, 215, 245, 0.00) 263.9321994781494deg, rgba(186, 215, 245, 0.10) 337.22856044769287deg, rgba(186, 215, 245, 0.50) 360deg);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: add, add;
+    mask-composite: exclude;
+}

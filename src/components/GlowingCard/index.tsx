@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls } from "motion/react";
 import { cn } from "../../lib/utils";
 import "./index.css";
 

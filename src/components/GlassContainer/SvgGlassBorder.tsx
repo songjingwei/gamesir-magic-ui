@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface SvgGlassBorderProps {
-  width: number;
-  height: number;
-  borderRadius: number;
-  strokeWidth?: number;
+	width: number;
+	height: number;
+	borderRadius: number;
+	strokeWidth?: number;
 }
 
 const SvgGlassBorder: React.FC<SvgGlassBorderProps> = ({
