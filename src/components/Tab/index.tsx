@@ -4,7 +4,6 @@ import { cn } from "../../lib/utils";
 
 import LeftSelectedSvg from "../../assets/left_selected.svg";
 import RightSelectedSvg from "../../assets/right_selected.svg";
-import RightNotSelectedSvg from "../../assets/right_not_selected.svg";
 
 interface Tab {
 	title: string;
@@ -17,13 +16,7 @@ interface TabContainerProps {
 	height?: number;
 }
 
-const TAB_HEIGHT = 40;
-
-export const TabContainer: React.FC<TabContainerProps> = ({
-	tabs,
-	width = 800,
-	height = 400,
-}) => {
+export const TabContainer: React.FC<TabContainerProps> = ({ tabs }) => {
 	const [selectedTab, setSelectedTab] = useState(0);
 
 	return (
