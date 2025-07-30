@@ -7,3 +7,4 @@ export * from "./GlowingButton";
 export * from "./SvgGlassTag";
 export * from "./GlassContainer";
 export * from "./CircleGlassContainer";
+export * from "./Tab";

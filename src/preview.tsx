@@ -8,7 +8,12 @@ import { Button } from "./components/ui/button"; // 导入 Button
 import { LightScanEffect } from "./components/LightScanEffect"; // 导入 LightScanEffect
 import { PlayerReview } from "./components/PlayerReview"; // 导入 PlayerReview
 import { GlowingButton } from "./components/GlowingButton"; // 导入 GlowingButton
-import { GlassContainer, SvgGlassTag, CircleGlassContainer, } from "./components"; // 导入 GlassContainer, GlassTag 和 SvgGlassTag
+import {
+	GlassContainer,
+	SvgGlassTag,
+	CircleGlassContainer,
+} from "./components"; // 导入 GlassContainer, GlassTag 和 SvgGlassTag
+import { TabContainer } from "./components/Tab";
 import { cn } from "./lib/utils"; // 导入 cn 函数
 
 import Background from "./assets/background_grid.svg";
@@ -184,9 +189,16 @@ const Preview: React.FC = () => {
 
 				{/* GlassContainer display area */}
 				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
-					<h2 className="text-xl font-bold text-white mb-4">GlassContainer 预览</h2>
+					<h2 className="text-xl font-bold text-white mb-4">
+						GlassContainer 预览
+					</h2>
 					<div className="w-full flex justify-center">
-						<GlassContainer borderRadius={12} onClick={() => { alert("GlassContainer clicked"); }}>
+						<GlassContainer
+							borderRadius={12}
+							onClick={() => {
+								alert("GlassContainer clicked");
+							}}
+						>
 							<p>你好哇，李银河</p>
 						</GlassContainer>
 					</div>
@@ -194,11 +206,31 @@ const Preview: React.FC = () => {
 
 				{/* CircleGlassContainer display area */}
 				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
-					<h2 className="text-xl font-bold text-white mb-4">CircleGlassContainer 预览</h2>
+					<h2 className="text-xl font-bold text-white mb-4">
+						CircleGlassContainer 预览
+					</h2>
 					<div className="w-full flex justify-center">
-						<CircleGlassContainer size={60} onClick={() => { alert("CircleGlassContainer clicked"); }}>
+						<CircleGlassContainer
+							size={60}
+							onClick={() => {
+								alert("CircleGlassContainer clicked");
+							}}
+						>
 							<p>Circle</p>
 						</CircleGlassContainer>
+					</div>
+				</div>
+
+				{/* TabContainer display area */}
+				<div className="bg-gray-800 col-span-3 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">Tab Container</h2>
+					<div className="w-full flex justify-center">
+						<TabContainer
+							tabs={[
+								{ title: "云玩时长充值", content: <div>云玩时长充值内容</div> },
+								{ title: "共享账号充值", content: <div>共享账号充值内容</div> },
+							]}
+						/>
 					</div>
 				</div>
 			</div>

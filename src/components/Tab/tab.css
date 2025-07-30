@@ -1,0 +1,44 @@
+.tab-container-wrapper {
+	position: relative;
+}
+
+.tab-container-svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.tabs-list {
+	position: relative;
+	display: flex;
+	z-index: 2;
+	width: 100%; /* Make tabs list span full width */
+}
+
+.tab-button {
+	background: none;
+	border: none;
+	color: #a0aec0;
+	cursor: pointer;
+	padding: 0 20px;
+	font-size: 16px;
+	transition: color 0.3s ease;
+	outline: none;
+	flex-grow: 1; /* Allow tab buttons to grow and fill space */
+}
+
+.tab-button.selected {
+	color: #ffffff;
+	font-weight: 600;
+}
+
+.tab-content-wrapper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	z-index: 2;
+	color: white;
+}
