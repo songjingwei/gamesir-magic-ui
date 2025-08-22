@@ -77,7 +77,11 @@ export const GlowingCard = (props: IGlowingCardProps) => {
 
 	return (
 		<motion.div
-			className={cn("relative cursor-pointer w-full h-full", props.className)}
+			className={cn(
+				"relative cursor-pointer w-full",
+				!props.className?.includes("aspect") && "h-full",
+				props.className,
+			)}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			style={{
