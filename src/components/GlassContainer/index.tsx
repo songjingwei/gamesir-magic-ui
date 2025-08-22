@@ -80,7 +80,7 @@ const GlassContainer: React.FC<GlassContainerProps> = ({
 					borderRadius={borderRadius}
 				/>
 			)}
-			<div className="relative h-full z-10">{children}</div>
+			<div className={cn("relative h-full z-10", "flex justify-center items-center")}>{children}</div>
 		</div>
 	);
 };

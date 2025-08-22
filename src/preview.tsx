@@ -14,6 +14,7 @@ import {
 	CircleGlassContainer,
 } from "./components"; // 导入 GlassContainer, GlassTag 和 SvgGlassTag
 import { TabContainer } from "./components/Tab";
+import { Glass } from "./components/Glass"; // 导入 Glass 组件
 import { cn } from "./lib/utils"; // 导入 cn 函数
 
 import Background from "./assets/background_grid.svg";
@@ -218,6 +219,19 @@ const Preview: React.FC = () => {
 						>
 							<p>Circle</p>
 						</CircleGlassContainer>
+					</div>
+				</div>
+
+				{/* Glass display area */}
+				<div className="bg-gray-800 col-span-1 w-full rounded-lg shadow-lg p-6 flex flex-col items-start">
+					<h2 className="text-xl font-bold text-white mb-4">Glass 预览</h2>
+					<div className="w-full flex justify-center">
+						<div>
+							<Glass>
+								<div
+								>Glass</div>
+							</Glass>
+						</div>
 					</div>
 				</div>
 
