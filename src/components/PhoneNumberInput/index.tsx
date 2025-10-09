@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import ArrowDownIcon from "./components/ArrowDownIcon";
 import {
@@ -7,6 +8,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 type AreaCode = {
 	name: string;
@@ -71,6 +73,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	areaCodes,
 	value,
 	onChange,
+	className,
 	placeholder = "输入手机号码",
 	activeColor = "#BAD7F5",
 	hoverColor = "#92D6FF",
@@ -99,11 +102,36 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	const selectedAreaCode = areaCodes.find((ac) => ac.code === value.areaCode);
 
 	return (
-		<div className="box-border flex flex-row items-center justify-start p-0 relative shrink-0 w-full">
+		<div
+			className={cn(
+				// 布局相关
+				"flex flex-row items-center justify-start relative",
+				// 盒模型相关
+				"box-border p-0 w-full",
+				// 其他
+				"shrink-0",
+				className,
+			)}
+		>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<div
-						className="bg-[rgba(186,215,245,0.05)] box-border flex flex-row gap-2.5 items-center justify-start px-2.5 py-[9px] relative rounded-bl-[8px] rounded-tl-[8px] shrink-0 cursor-pointer w-[80px] border border-solid focus:border-[var(--hover-color)] border-[rgba(186,215,245,0.3)] data-[state=open]:border-[var(--hover-color)]"
+						className={cn(
+							// 背景相关
+							"bg-[#bad7f5]/5 backdrop-blur-[15px]",
+							// 布局相关
+							"flex flex-row items-center justify-start relative",
+							// 盒模型相关
+							"box-border px-2.5 py-[9px] w-[80px]",
+							// 边框相关
+							"rounded-bl-[8px] rounded-tl-[8px] border border-solid border-[#bad7f5]/20",
+							// 间距相关
+							"gap-2.5",
+							// 其他
+							"shrink-0 cursor-pointer",
+							// 状态相关
+							"focus:border-[var(--hover-color)] data-[state=open]:border-[var(--hover-color)]",
+						)}
 						style={
 							{
 								"--hover-color": hoverColor,
@@ -112,23 +140,38 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						}
 					>
 						<div className="absolute inset-0 pointer-events-none rounded-bl-[8px] rounded-tl-[8px]" />
-						<div className="flex font-['Noto_Sans_SC:Regular',_sans-serif] font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
+						<div className="flex font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
 							<div className="relative -top-[1px]">+</div>
 							<span>{selectedAreaCode?.code || areaCodes[0].code}</span>
 						</div>
-						<ArrowDownIcon />
+						<ArrowDownIcon color="#bad7f5" />
 					</div>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
 					sideOffset={5}
 					align="start"
-					className="bg-[#161a25] w-[352px] border border-[rgba(186,215,245,0.3)] rounded-lg shadow-lg text-[#bad7f5] p-1"
+					className="bg-[#161a25] w-[352px] border border-[#bad7f5]/20 rounded-lg shadow-lg text-[#bad7f5] p-1"
 				>
 					{areaCodes.map((area) => (
 						<DropdownMenuItem
 							key={area.code}
 							onClick={() => handleAreaCodeChange(area.code)}
-							className="font-noto font-normal leading-[22px] text-4 text-left text-nowrap cursor-pointer focus:bg-[var(--active-color)]/15 focus:text-[var(--hover-color)] px-2 py-1 rounded"
+							className={cn(
+								// 字体相关
+								"font-noto font-normal text-4",
+								// 布局相关
+								"flex text-left text-nowrap",
+								// 盒模型相关
+								"px-2 py-1",
+								// 边框相关
+								"rounded",
+								// 其他
+								"cursor-pointer",
+								// 状态相关
+								"focus:bg-[var(--active-color)]/15 focus:text-[var(--hover-color)]",
+								// 间距相关
+								"leading-[22px]",
+							)}
 							style={
 								{
 									"--active-color": activeColor,
@@ -145,7 +188,20 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 			<Input
 				onMouseEnter={() => setIsPhoneNumberHovered(true)}
 				onMouseLeave={() => setIsPhoneNumberHovered(false)}
-				className="backdrop-blur-[15px] px-[10px] py-[9px] backdrop-filter basis-0 bg-[rgba(186,215,245,0.05)] grow h-[42px] relative rounded-r-[8px] rounded-l-none shrink-0 border-[1px] text-[16px]! text-[var(--active-color)] placeholder-[rgba(186,215,245,0.3)] focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)] border-l-0  border-[rgba(186,215,245,0.3)]"
+				className={cn(
+					// 背景相关
+					"backdrop-filter backdrop-blur-[15px] bg-[#bad7f5]/5",
+					// 布局相关
+					"relative",
+					// 盒模型相关
+					"px-[10px] py-[9px] basis-0 grow h-[42px] shrink-0",
+					// 边框相关
+					"rounded-r-[8px] rounded-l-none border-[1px] border-l-0 border-[#bad7f5]/20",
+					// 文本相关
+					"text-[16px]! text-[var(--active-color)] placeholder-[#bad7f5]/20",
+					// 交互相关
+					"focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)]",
+				)}
 				style={
 					{
 						"--active-color": activeColor,
