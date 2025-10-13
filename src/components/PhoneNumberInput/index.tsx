@@ -30,6 +30,7 @@ type PhoneNumberInputProps = {
 	hoverColor?: string;
 	isError?: boolean; // 新增属性，表示是否处于错误状态
 	errorColor?: string; // 新增属性，错误颜色
+	leftWidth?: number | string; // 新增属性，控制左侧区域宽度
 };
 
 /**
@@ -79,6 +80,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 	hoverColor = "#92D6FF",
 	isError = false, // 默认不为错误状态
 	errorColor = "#ff614c", // 默认错误颜色
+	leftWidth = 80,
 }) => {
 	const [isPhoneNumberFocused, setIsPhoneNumberFocused] = useState(false);
 	const [isPhoneNumberHovered, setIsPhoneNumberHovered] = useState(false);
@@ -136,6 +138,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 							{
 								"--hover-color": hoverColor,
 								borderRightWidth: isPhoneNumberFocused ? 0 : 1,
+								width: leftWidth,
 							} as React.CSSProperties
 						}
 					>

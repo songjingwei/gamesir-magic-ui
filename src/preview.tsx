@@ -117,6 +117,7 @@ const Preview: React.FC = () => {
 										value={field.value}
 										onChange={field.onChange}
 										isError={false}
+										leftWidth={77}
 										placeholder="Enter phone number"
 									/>
 								)}
@@ -228,8 +229,7 @@ const Preview: React.FC = () => {
 					<div className="w-full flex justify-center">
 						<div>
 							<Glass>
-								<div
-								>Glass</div>
+								<div>Glass</div>
 							</Glass>
 						</div>
 					</div>
