@@ -117,7 +117,7 @@ const Preview: React.FC = () => {
 										value={field.value}
 										onChange={field.onChange}
 										isError={false}
-										leftWidth={77}
+										leftWidth={79}
 										placeholder="Enter phone number"
 									/>
 								)}

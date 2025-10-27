@@ -147,7 +147,9 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 							<div className="relative -top-[1px]">+</div>
 							<span>{selectedAreaCode?.code || areaCodes[0].code}</span>
 						</div>
-						<ArrowDownIcon color="#bad7f5" />
+						<span className="text-xl">
+							<ArrowDownIcon color="#bad7f5" />
+						</span>
 					</div>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
