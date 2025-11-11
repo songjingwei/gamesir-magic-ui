@@ -143,11 +143,13 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 						}
 					>
 						<div className="absolute inset-0 pointer-events-none rounded-bl-[8px] rounded-tl-[8px]" />
-						<div className="flex font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-base! text-left text-nowrap align-middle">
-							<div className="relative -top-[1px]">+</div>
-							<span>{selectedAreaCode?.code || areaCodes[0].code}</span>
+						<div className="flex font-normal justify-center items-center leading-[22px] relative shrink-0 text-[#bad7f5] text-sm lg:text-base text-left text-nowrap align-middle">
+							<div className="relative -top-[1px] leading-[22px]">+</div>
+							<div className="leading-[22px]">
+								{selectedAreaCode?.code || areaCodes[0].code}
+							</div>
 						</div>
-						<span className="text-xl">
+						<span className="text-base lg:text-xl">
 							<ArrowDownIcon color="#bad7f5" />
 						</span>
 					</div>
@@ -203,7 +205,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 					// 边框相关
 					"rounded-r-[8px] rounded-l-none border-[1px] border-l-0 border-[#bad7f5]/20",
 					// 文本相关
-					"text-[16px]! text-[var(--active-color)] placeholder-[#bad7f5]/20",
+					"text-sm lg:!text-base lg:text-[var(--active-color)] placeholder:text-[#bad7f5]/20",
 					// 交互相关
 					"focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:border-[var(--hover-color)]",
 				)}
