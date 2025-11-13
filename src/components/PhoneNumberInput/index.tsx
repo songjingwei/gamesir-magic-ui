@@ -197,7 +197,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				onMouseLeave={() => setIsPhoneNumberHovered(false)}
 				className={cn(
 					// 背景相关
-					"backdrop-filter backdrop-blur-[15px] bg-[#bad7f5]/5",
+					"backdrop-filter backdrop-blur-[15px] !bg-[#bad7f5]/5",
 					// 布局相关
 					"relative",
 					// 盒模型相关
