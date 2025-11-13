@@ -193,6 +193,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 				</DropdownMenuContent>
 			</DropdownMenu>
 			<Input
+				autoComplete="off"
 				onMouseEnter={() => setIsPhoneNumberHovered(true)}
 				onMouseLeave={() => setIsPhoneNumberHovered(false)}
 				className={cn(
@@ -204,6 +205,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 					"px-[10px] py-[9px] basis-0 grow h-[42px] shrink-0",
 					// 边框相关
 					"rounded-r-[8px] rounded-l-none border-[1px] border-l-0 border-[#bad7f5]/20",
+					"text-[#bad7f5]",
 					// 文本相关
 					"text-sm lg:!text-base lg:text-[var(--active-color)] placeholder:text-[#bad7f5]/20",
 					// 交互相关
